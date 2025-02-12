@@ -1,4 +1,17 @@
-class User < ApplicationRecord
+module Courses
+  NUMBER_TO_SCHEDULE = {
+    1 => [ "06:00", "07:30" ],
+    3 => [ "07:30", "09:00" ],
+    5 => [ "09:00", "10:30" ],
+    7 => [ "10:30", "12:00" ],
+    9 => [ "12:00", "13:30" ],
+    11 => [ "13:30", "15:00" ],
+    13 => [ "15:00", "16:30" ],
+    15 => [ "16:30", "18:00" ],
+    17 => [ "18:00", "19:30" ],
+    19 => [ "19:30", "21:00" ]
+  }
+
   LOCATIONS = {
     4 => "Centro Internacional",
     21 => "Centro Medellín",
@@ -15,12 +28,4 @@ class User < ApplicationRecord
     61 => "Laureles",
     66 => "Castropol"
   }
-
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-
-  has_many :courses
-  has_one :active_course, -> { where(active: true) }, class_name: "Course"
 end
